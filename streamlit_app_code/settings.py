@@ -17,14 +17,8 @@ ROOT = root_path.relative_to(Path.cwd())
 
 # Source
 WEBCAM = 'Webcam'
-IMAGE = 'Image'
 
-SOURCES_LIST = [WEBCAM, IMAGE]
-
-# images
-IMAGES_DIR = ROOT / 'images'
-DEFAULT_IMAGE = IMAGES_DIR / 'recycling.png'
-DEFAULT_DETECT_IMAGE = IMAGES_DIR / 'office_4_detected.jpg'
+SOURCES_LIST = [WEBCAM]
 
 # model
 MODEL_DIR = ROOT / 'weights'
