@@ -16,9 +16,9 @@ if root_path not in sys.path:
 ROOT = root_path.relative_to(Path.cwd())
 
 # Source
-WEBCAM = 'Webcam'
+# WEBCAM = 'Webcam'
 
-SOURCES_LIST = [WEBCAM]
+# SOURCES_LIST = [WEBCAM]
 
 # model
 MODEL_DIR = ROOT / 'weights'
