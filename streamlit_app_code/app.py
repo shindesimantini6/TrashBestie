@@ -4,14 +4,15 @@ import PIL
 import streamlit as st
 import torch
 import cv2
-import pafy
+# import pafy
 
 import settings
 import helper
+from class_description import class_descriptions
 
 import os
-os.environ["PAFY_BACKEND"] = "internal"
-import pafy
+# os.environ["PAFY_BACKEND"] = "internal"
+# import pafy
 
 
 # Sidebar
@@ -68,10 +69,18 @@ if source_radio == settings.IMAGE:
         else:
             if st.sidebar.button('Detect Objects'):
                 with torch.no_grad():
+                    classes_predicted = []
                     res = model.predict(
                         image, save=save, save_txt=save, exist_ok=True, conf=conf)
+                    names = model.names
+                    for r in res:
+                        for c in r.boxes.cls:
+                            classes_predicted.append(names[int(c)])
+                    print(classes_predicted)
+
                     boxes = res[0].boxes
                     res_plotted = res[0].plot()[:, :, ::-1]
+                    # print(res_plotted)
                     st.image(res_plotted, caption='Detected Image',
                              use_column_width=True)
                     IMAGE_DOWNLOAD_PATH = f"runs/{dirpath_locator}/predict/image0.jpg"
@@ -84,10 +93,20 @@ if source_radio == settings.IMAGE:
                 try:
                     with st.expander("Detection Results"):
                         for box in boxes:
+                            print(box.xywh[0])
                             st.write(box.xywh)
                 except Exception as ex:
                     # st.write(ex)
                     st.write("No image is uploaded yet!")
+                
+                for keys in class_descriptions:
+                    print(keys)
+                    for name in classes_predicted:
+                        print(name)
+                        if name == keys:
+                            st.write(f"Predicted as {name}")
+                            st.write(class_descriptions[keys]["waste_bin"])
+                            st.write(class_descriptions[keys]["description"])
 
 elif source_radio == settings.VIDEO:
     source_vid = st.sidebar.selectbox(
@@ -120,45 +139,51 @@ elif source_radio == settings.WEBCAM:
             if success:
                 image = cv2.resize(image, (720, int(720*(9/16))))
                 res = model.predict(image, conf=conf)
-                res_plotted = res[0].plot()
+                # if res == "battery":
+                #     description = ""
+                #     print(description)
+                # if res =
+
+
+                res_plotted = res[0].plot() 
                 stframe.image(res_plotted,
                               caption='Detected Video',
                               channels="BGR",
                               use_column_width=True
                               )
 
-elif source_radio == settings.RTSP:
-    source_rtsp = st.sidebar.text_input("rtsp stream url")
-    if st.sidebar.button('Detect Objects'):
-        vid_cap = cv2.VideoCapture(source_rtsp)
-        stframe = st.empty()
-        while (vid_cap.isOpened()):
-            success, image = vid_cap.read()
-            if success:
-                image = cv2.resize(image, (720, int(720*(9/16))))
-                res = model.predict(image, conf=conf)
-                res_plotted = res[0].plot()
-                stframe.image(res_plotted,
-                              caption='Detected Video',
-                              channels="BGR",
-                              use_column_width=True
-                              )
+# elif source_radio == settings.RTSP:
+#     source_rtsp = st.sidebar.text_input("rtsp stream url")
+#     if st.sidebar.button('Detect Objects'):
+#         vid_cap = cv2.VideoCapture(source_rtsp)
+#         stframe = st.empty()
+#         while (vid_cap.isOpened()):
+#             success, image = vid_cap.read()
+#             if success:
+#                 image = cv2.resize(image, (720, int(720*(9/16))))
+#                 res = model.predict(image, conf=conf)
+#                 res_plotted = res[0].plot()
+#                 stframe.image(res_plotted,
+#                               caption='Detected Video',
+#                               channels="BGR",
+#                               use_column_width=True
+#                               )
 
-elif source_radio == settings.YOUTUBE:
-    source_youtube = st.sidebar.text_input("YouTube Video url")
-    if st.sidebar.button('Detect Objects'):
-        video = pafy.new(source_youtube)
-        best = video.getbest(preftype="mp4")
-        cap = cv2.VideoCapture(best.url)
-        stframe = st.empty()
-        while (cap.isOpened()):
-            success, image = cap.read()
-            if success:
-                image = cv2.resize(image, (720, int(720*(9/16))))
-                res = model.predict(image, conf=conf)
-                res_plotted = res[0].plot()
-                stframe.image(res_plotted,
-                              caption='Detected Video',
-                              channels="BGR",
-                              use_column_width=True
-                              )
+# elif source_radio == settings.YOUTUBE:
+#     source_youtube = st.sidebar.text_input("YouTube Video url")
+#     if st.sidebar.button('Detect Objects'):
+#         video = pafy.new(source_youtube)
+#         best = video.getbest(preftype="mp4")
+#         cap = cv2.VideoCapture(best.url)
+#         stframe = st.empty()
+#         while (cap.isOpened()):
+#             success, image = cap.read()
+#             if success:
+#                 image = cv2.resize(image, (720, int(720*(9/16))))
+#                 res = model.predict(image, conf=conf)
+#                 res_plotted = res[0].plot()
+#                 stframe.image(res_plotted,
+#                               caption='Detected Video',
+#                               channels="BGR",
+#                               use_column_width=True
+#                               )
