@@ -98,6 +98,7 @@ elif source_radio == settings.VIDEO:
     video_bytes = video_file.read()
     st.video(video_bytes)
     if st.sidebar.button('Detect Video Objects'):
+        classes_predicted = []
         vid_cap = cv2.VideoCapture(str(settings.VIDEOS_DICT.get(source_vid)))
         stframe = st.empty()
         while (vid_cap.isOpened()):
@@ -105,12 +106,26 @@ elif source_radio == settings.VIDEO:
             if success:
                 image = cv2.resize(image, (720, int(720*(9/16))))
                 res = model.predict(image)
+                names = model.names
+                for r in res:
+                    for c in r.boxes.cls:
+                        classes_predicted.append(names[int(c)])
+                print(classes_predicted)
+
                 res_plotted = res[0].plot()
                 stframe.image(res_plotted,
                               caption='Detected Video',
                               channels="BGR",
                               use_column_width=True
                               )
+                for keys in class_descriptions:
+                    print(keys)
+                    for name in classes_predicted:
+                        print(name)
+                        if name == keys:
+                            st.sidebar.write(f"Predicted as {name}")
+                            st.write(class_descriptions[keys]["waste_bin"])
+                            st.write(class_descriptions[keys]["description"])
 
 elif source_radio == settings.WEBCAM:
     source_webcam = settings.WEBCAM_PATH
@@ -120,12 +135,14 @@ elif source_radio == settings.WEBCAM:
     while (vid_cap.isOpened()):
         success, image = vid_cap.read()
         if success:
+            classes_predicted = []
             image = cv2.resize(image, (720, int(720*(9/16))))
             res = model.predict(image)
-            # if res == "battery":
-            #     description = ""
-            #     print(description)
-            # if res =
+            names = model.names
+            for r in res:
+                for c in r.boxes.cls:
+                    classes_predicted.append(names[int(c)])
+            print(classes_predicted)
 
 
             res_plotted = res[0].plot() 
@@ -134,6 +151,14 @@ elif source_radio == settings.WEBCAM:
                             channels="BGR",
                             use_column_width=True
                             )
+            for keys in class_descriptions:
+                print(keys)
+                for name in classes_predicted:
+                    print(name)
+                    if name == keys:
+                        st.sidebar.write(f"Predicted as {name}")
+                        st.write(class_descriptions[keys]["waste_bin"])
+                        st.write(class_descriptions[keys]["description"])
 
 #st.markdown(
 #    """
