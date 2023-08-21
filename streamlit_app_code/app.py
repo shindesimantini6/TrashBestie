@@ -89,7 +89,7 @@ if source_radio == settings.IMAGE:
                     for name in classes_predicted:
                         print(name)
                         if name == keys:
-                            st.sidebar.write(f"Predicted as {name}")
+                            st.write(f"Predicted as {name}")
                             st.write(class_descriptions[keys]["waste_bin"])
                             st.write(class_descriptions[keys]["description"])
 
@@ -122,7 +122,7 @@ elif source_radio == settings.WEBCAM:
                 for name in classes_predicted:
                     print(name)
                     if name == keys:
-                        st.sidebar.write(f"Predicted as {name}")
+                        st.write(f"Predicted as {name}")
                         st.write(class_descriptions[keys]["waste_bin"])
                         st.write(class_descriptions[keys]["description"])
 
