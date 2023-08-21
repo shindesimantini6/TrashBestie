@@ -16,9 +16,11 @@ import os
 
 
 # Sidebar
-st.title("Object Detection using YOLOv8")
+# st.title("Object Detection using YOLOv8")
 
-st.sidebar.header("ML Model Config")
+# st.sidebar.header("ML Model Config")
+
+conf = 0.5  # Minimum accuracy score fixed at 50%
 
 dirpath_locator = settings.DETECT_LOCATOR
 model_path = Path(settings.DETECTION_MODEL)
@@ -30,16 +32,13 @@ except Exception as ex:
     st.write(f"Unable to load model. Check the specified path: {model_path}")
 
 source_img = None
-st.sidebar.header("Image/Video Config")
-source_radio = st.sidebar.radio(
-    "Select Source", settings.SOURCES_LIST)
+source_radio = st.sidebar.radio("Select source", settings.SOURCES_LIST)
 
-# body
+# bodyma
 # If image is selected
 if source_radio == settings.IMAGE:
-    source_img = st.sidebar.file_uploader(
-        "Choose an image...", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
-    save_radio = st.sidebar.radio("Save image to download", ["Yes", "No"])
+    source_img = st.sidebar.file_uploader("Choose an image", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
+    save_radio = st.sidebar.button("Download image", ["Yes", "No"])
     save = True if save_radio == 'Yes' else False
     col1, col2 = st.columns(2)
 
@@ -65,7 +64,7 @@ if source_radio == settings.IMAGE:
                 with torch.no_grad():
                     classes_predicted = []
                     res = model.predict(
-                        image, save=save, save_txt=save, exist_ok=True)
+                        image, save=save, save_txt=save, exist_ok=True, conf=conf)
                     names = model.names
                     for r in res:
                         for c in r.boxes.cls:
@@ -94,46 +93,50 @@ if source_radio == settings.IMAGE:
                             st.write(class_descriptions[keys]["waste_bin"])
                             st.write(class_descriptions[keys]["description"])
 
-elif source_radio == settings.VIDEO:
-    source_vid = st.sidebar.selectbox(
-        "Choose a video...", settings.VIDEOS_DICT.keys())
-    video_file = open(settings.VIDEOS_DICT.get(source_vid), 'rb')
-    video_bytes = video_file.read()
-    st.video(video_bytes)
-    if st.sidebar.button('Detect Video Objects'):
-        vid_cap = cv2.VideoCapture(str(settings.VIDEOS_DICT.get(source_vid)))
-        stframe = st.empty()
-        while (vid_cap.isOpened()):
-            success, image = vid_cap.read()
-            if success:
-                image = cv2.resize(image, (720, int(720*(9/16))))
-                res = model.predict(image)
-                res_plotted = res[0].plot()
-                stframe.image(res_plotted,
-                              caption='Detected Video',
-                              channels="BGR",
-                              use_column_width=True
-                              )
-
 elif source_radio == settings.WEBCAM:
     source_webcam = settings.WEBCAM_PATH
-    if st.sidebar.button('Detect Objects'):
-        vid_cap = cv2.VideoCapture(source_webcam)
-        stframe = st.empty()
-        while (vid_cap.isOpened()):
-            success, image = vid_cap.read()
-            if success:
-                image = cv2.resize(image, (720, int(720*(9/16))))
-                res = model.predict(image)
-                # if res == "battery":
-                #     description = ""
-                #     print(description)
-                # if res =
+#    if st.sidebar.button('Detect Objects'):
+    vid_cap = cv2.VideoCapture(source_webcam)
+    stframe = st.empty()
+    while (vid_cap.isOpened()):
+        success, image = vid_cap.read()
+        if success:
+            classes_predicted = []
+            image = cv2.resize(image, (720, int(720*(9/16))))
+            res = model.predict(image, conf=conf)
+            names = model.names
+            for r in res:
+                for c in r.boxes.cls:
+                    classes_predicted.append(names[int(c)])
+            print(classes_predicted)
 
 
-                res_plotted = res[0].plot() 
-                stframe.image(res_plotted,
-                              caption='Detected Video',
-                              channels="BGR",
-                              use_column_width=True
-                              )
+            res_plotted = res[0].plot() 
+            stframe.image(res_plotted,
+                            caption='Detected Video',
+                            channels="BGR",
+                            use_column_width=True
+                            )
+            for keys in class_descriptions:
+                print(keys)
+                for name in classes_predicted:
+                    print(name)
+                    if name == keys:
+                        st.sidebar.write(f"Predicted as {name}")
+                        st.write(class_descriptions[keys]["waste_bin"])
+                        st.write(class_descriptions[keys]["description"])
+
+#st.markdown(
+#    """
+#    <style>
+#    .css-6qob1r{
+#       background-color: #262730
+#    }
+#    .css-1wrcr25,
+#    .css-18ni7ap{
+#       background-color: black;
+#    }
+#    </style>
+#    """,
+#    unsafe_allow_html=True
+#)
