@@ -15,10 +15,59 @@ import os
 # import pafy
 
 
-# Sidebar
+# # Sidebar
 # st.title("Object Detection using YOLOv8")
+# st.write("Herzlich Willkommen")
+
+# if st.button("Webcam aktivieren"):
+#     # Setzen Sie den Radio-Button auf "Webcam"
+#     source_radio = "Webcam"
+# else:
+#     source_radio= None
 
 # st.sidebar.header("ML Model Config")
+
+# nav = st.sidebar.radio(
+#     "Please chose one of the following options:",
+#     ["Home", "Webcam-Detection", "Image-Detection"]
+#     ) 
+
+# if nav == "Home":
+#     st.markdown(
+#     """ ## Welcome to the Garbage Predictor page.
+#     """
+#     )
+#     st.image("https://www.bing.com/images/search?view=detailV2&ccid=RvwE8IJ5&id=E6038CEEC59C8C4510724BCA3AA881115B1B1A60&thid=OIP.RvwE8IJ5ZmpW4taP_LjxwQHaGA&mediaurl=https%3a%2f%2fi1.wp.com%2fallamerican1930.com%2fwp-content%2fuploads%2f2020%2f10%2f12oz-can-cluster.png%3ffit%3d1766%2c1434%26ssl%3d1&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.46fc04f08279666a56e2d68ffcb8f1c1%3frik%3dYBobWxGBqDrKSw%26pid%3dImgRaw%26r%3d0&exph=1434&expw=1766&q=alumium+cans&simid=608009744375158927&FORM=IRPRST&ck=445AC1BD63720DC4B47B403E6A96DF41&selectedIndex=0&ajaxhist=0&ajaxserp=0", width=400)
+    
+#     st.markdown(
+#     """ ### This model predicts the garbage type based on YOLOv8 object detection. Furthermore it gives you the information of how to sort it correctly.
+#     """
+#     )
+
+# if nav == "Webcam-Detection":
+#     st.write("Welcome to the section of Webcam-Detection. Please hold your garbage sort into the webcam of your electronic device")
+#     st.write("Data is taken from [titanic](https://www.kaggle.com/competitions/titanic/data?select=train.csv)")
+#     if st.checkbox("Click here to see the original dataframe"):
+#         st.title("Titanic training dataset")
+#         st.dataframe(df)
+#     if st.checkbox("Click here to see missing values"):
+#         fig,ax = plt.subplots()
+#         st.title("Heatmap features titanic dataset")
+#         sns.heatmap(df.corr(), ax = ax)
+#         st.write(fig)
+#     if st.checkbox("Click here to see distribution of variables"):
+#         st.title("Distribution features titanic dataset")
+#         fig = sns.pairplot(df, hue = "Survived")
+#         st.pyplot(fig)
+#     if st.checkbox("Click here to see the variables taken into account for model fit"):
+#         st.title("Features for model fit")
+#         st.write(df[['Pclass', 'Sex', 'Age', 'SibSp', 'Parch']].columns)
+
+# if nav == "Image-Detection":
+#     st.markdown(
+#     """ #### Welcome to the predictions page.
+#     """
+#     )
 
 conf = 0.5  # Minimum accuracy score fixed at 50%
 
