@@ -45,7 +45,7 @@ SEGMENT_LOCATOR = 'segment'
 
 
 # Webcam
-WEBCAM_PATH = 0
+WEBCAM_PATH = 1
 
 
 # def process_video(input_video_path, output_video_path):
