@@ -189,3 +189,13 @@ elif source_radio == settings.WEBCAM:
 #    """,
 #    unsafe_allow_html=True
 #)
+
+
+# TO DO:
+# Remove Radio buttons
+# Remove app.py 
+# Fix import of settings
+# comment out download image
+# col1 : Image and col2: description
+# Change the font of the descriptiom
+# Push it on the cloud
