@@ -1,5 +1,5 @@
 import streamlit as st
-from /streamlit_app_code import settings
+from streamlit_app_code import settings
 import PIL
 import torch
 import cv2
