@@ -22,7 +22,6 @@ Jinja2==3.1.2
 jsonschema==4.17.3
 kiwisolver==1.4.4
 lit==15.0.7
-libgl1
 markdown-it-py==2.2.0
 MarkupSafe==2.1.2
 matplotlib==3.7.1
