@@ -1,5 +1,16 @@
 import streamlit as st
-from streamlit_app_code.settings import *
+# from streamlit_app_code import settings
+
+import sys
+import os
+
+# Add the path to the parent folder of the current script's directory to the system path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
+import settings
+
 import PIL
 import torch
 import cv2
@@ -13,25 +24,31 @@ st.set_page_config(
     page_icon="👋",
 )
 
-st.write("# Welcome to Streamlit! 👋")
-
-st.sidebar.success("Select a demo above.")
+st.write("# Welcome to Real-Time Garbage Object Detection! 👋")
 
 st.markdown(
     """
-    Streamlit is an open-source app framework built specifically for
-    Machine Learning and Data Science projects.
-    **👈 Select a demo from the sidebar** to see some examples
-    of what Streamlit can do!
-    ### Want to learn more?
-    - Check out [streamlit.io](https://streamlit.io)
-    - Jump into our [documentation](https://docs.streamlit.io)
-    - Ask a question in our [community
-        forums](https://discuss.streamlit.io)
-    ### See more complex demos
-    - Use a neural net to [analyze the Udacity Self-driving Car Image
-        Dataset](https://github.com/streamlit/demo-self-driving)
-    - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
+## Detect Garbage Objects with Your Webcam 📷
+
+With this section, you can use your webcam to detect and identify various garbage objects in real time. Simply show the object in front of your webcam, and our advanced object detection algorithm will identify and highlight the garbage objects on the screen.
+
+## How It Works
+
+1. **Select Webcam Detection**: Choose the "Webcam Detection" option from the sidebar to get started.
+
+2. **Show Objects to Your Webcam**: Hold any object in front of your webcam. The app will automatically detect and label the garbage objects present.
+
+3. **Real-Time Results**: Watch as the app identifies the type of garbage object and provides information about its proper disposal.
+
+## Join Us in Keeping the Environment Clean
+
+Whether you're passionate about recycling, waste reduction, or simply curious about what's considered garbage, our Real-Time Garbage Object Detection app is a fun and educational way to contribute to a cleaner world.
+
+Ready to get started? Choose the "Webcam Detection" option from the sidebar and let's begin the garbage object detection journey together!
+
+Remember, every small action counts toward a cleaner and greener planet. Let's make a positive impact!
+
+**Select "Webcam Detection" from the sidebar to start detecting garbage objects in real time!**
 """
 )
 

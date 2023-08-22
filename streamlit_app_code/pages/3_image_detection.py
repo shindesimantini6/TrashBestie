@@ -1,5 +1,21 @@
 import streamlit as st
+
+
+
+import sys
+import os
+
+# Add the path to the parent folder of the current script's directory to the system path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
 import settings
+
+# Now you can import the settings module
+# from settings import DETECT_LOCATOR, DETECTION_MODEL, SOURCES_LIST, DEFAULT_IMAGE, DEFAULT_DETECT_IMAGE, IMAGE
+
+
 import PIL
 import torch
 import cv2
@@ -13,27 +29,29 @@ import os
 #     page_icon="👋",
 # )
 
-# st.write("# Welcome to Streamlit! 👋")
+st.write("# Welcome to Garbage Image Detection! 👋")
 
-# st.sidebar.success("Select a demo above.")
+st.markdown(
+    """
+## Detect Garbage Objects by Uploading Images 📷
 
-# st.markdown(
-#     """
-#     Streamlit is an open-source app framework built specifically for
-#     Machine Learning and Data Science projects.
-#     **👈 Select a demo from the sidebar** to see some examples
-#     of what Streamlit can do!
-#     ### Want to learn more?
-#     - Check out [streamlit.io](https://streamlit.io)
-#     - Jump into our [documentation](https://docs.streamlit.io)
-#     - Ask a question in our [community
-#         forums](https://discuss.streamlit.io)
-#     ### See more complex demos
-#     - Use a neural net to [analyze the Udacity Self-driving Car Image
-#         Dataset](https://github.com/streamlit/demo-self-driving)
-#     - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-# """
-# )
+In this section, you can easily upload images and have our advanced YOLOv8 model identify and classify garbage objects present in the image. Not only will you receive an accuracy score for each detected garbage type, but you'll also get guidance on how to correctly sort the garbage for proper disposal.
+
+## ## How It Works
+
+1. **Choose an Image**: Click on the "Upload Image" button to choose an image containing garbage objects.
+
+2. **Object Detection**: Our YOLOv8 model will analyze the image and identify various garbage objects with corresponding accuracy scores.
+
+3. **Garbage Sorting**: For each detected garbage object, you'll learn how to correctly sort it (e.g., recycling, compost, landfill).
+
+Ready to start? Click on the "Upload Image" button and see the power of AI in action as it identifies garbage objects and helps you become a better waste warrior.
+
+Remember, every step counts toward reducing waste and preserving our environment for future generations. Let's work together for a cleaner, greener planet!
+
+**Click on "Upload Image" to get started with garbage object detection and sorting!**
+"""
+)
 
 conf = 0.5  # Minimum accuracy score fixed at 50%
 
