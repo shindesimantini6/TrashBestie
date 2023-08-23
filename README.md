@@ -15,7 +15,7 @@ The waste sorting currently is based on the waste segregation system in Germany.
     a. [Open Data Source](https://github.com/AgaMiko/waste-datasets-review)  
     b. Took images ourselves with the garbage from home. This step was taken to improve the accuracy of our model as garbage looks different in different countries and the [open source](https://github.com/AgaMiko/waste-datasets-review) has garbage not necessarily from Germany.  
 3. We annotated, preprocessed and augmented all images in [Roboflow](https://roboflow.com/).
-4. Trained a [YOLOv8](https://github.com/ultralytics/ultralytics) model for all images with 4 classes (`aluminium-cans`, `pen`, `toothbrushes` and `battery`). More information on training a custom YOLOv8 model with data augmented and preprocessed in Roboflow [here](https://blog.roboflow.com/how-to-train-yolov8-on-a-custom-dataset/)
+4. Trained a [YOLOv8](https://github.com/ultralytics/ultralytics) model for all images with 4 classes (`aluminium-cans`, `pen`, `toothbrushes` and `battery`). More information on training a custom YOLOv8 model with data augmented and preprocessed in Roboflow [here](https://blog.roboflow.com/how-to-train-yolov8-on-a-custom-dataset/).
 5. Created a [Streamlit web app](https://streamlit.io/) with the Webcam and Image Detection feature. More information on with YOLOv8 streamlit detection [here](https://github.com/CodingMantras/yolov8-streamlit-detection-tracking).
 
 ## Usage
@@ -41,6 +41,10 @@ be diposed in that bin.
 ## Demo of the model
 
 ![Screenshot from 2023-08-23 12-03-35_cropped](https://github.com/shindesimantini6/TrashBestie/assets/79316344/d7e6a1ce-9160-4f4b-9f63-d6e1e5d1a3ed)
+
+## Demo of the Web App
+
+https://github.com/shindesimantini6/TrashBestie/assets/79316344/607ad584-9523-410d-b64a-6174e4e29640
 
 ## Requirements
 - Python 3.6+
