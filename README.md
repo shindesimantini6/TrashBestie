@@ -1,5 +1,5 @@
 
-![trashbestie](https://github.com/shindesimantini6/TrashBestie/assets/79316344/880f1b1d-37ab-4e47-9387-ebf8d0b41c3f)
+<img width="629" alt="trashbestie_black" src="https://github.com/shindesimantini6/TrashBestie/assets/79316344/5c3a2352-ba64-4959-a3fd-17b7c9373d7e">
 
 An app used to sort waste at home.
 
