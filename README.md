@@ -1,4 +1,5 @@
-![Trash Bestie](trashbestie-1.png)
+
+![trashbestie](https://github.com/shindesimantini6/TrashBestie/assets/79316344/880f1b1d-37ab-4e47-9387-ebf8d0b41c3f)
 
 An app used to sort waste at home.
 
