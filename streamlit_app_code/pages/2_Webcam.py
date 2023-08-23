@@ -69,7 +69,7 @@ while (vid_cap.isOpened()):
             for name in classes_predicted:
                 print(name)
                 if name == keys:
-                    st.write(f"**Predicted as {name}**")
+                    st.write(f"- **Predicted as {name}**")
                     st.write(f'**{class_descriptions[keys]["waste_bin"]}**')
                     st.write(class_descriptions[keys]["description"])
                     
