@@ -5,6 +5,8 @@ st.set_page_config(
     page_icon="🗑️",
 )
 
+st.sidebar.image("trashbestie.png", use_column_width=True)
+
 st.header("Who are we?")
 
 st.write("""
@@ -20,3 +22,26 @@ st.write("""
     We created TrashBestie as a part of [GirlsInTech Hackathon](https://hackfortheenvironmentwith-git.devpost.com/). We were inspired by the positive impact topics presented by the hackathon and wanted to 
          explore our abilities by creating a project which had the potential to create positive change.          
 """)
+
+
+st.markdown(
+        """
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Chewy&display=swap'); 
+
+            h2 {
+                font-family: 'Chewy', sans-serif !important;
+                font-size: 45px;
+                font-weight: 500;
+                color: #32CD32;
+                padding-bottom: 20px;
+            }
+
+            .css-1v0mbdj {
+                margin-top:-300px;
+                z-index:-100;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
