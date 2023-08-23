@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.sidebar.image("trashbestie.png", use_column_width=True)
+
 option = st.sidebar.selectbox(
     'What would you like to know about?',
     ('Webcam Detection', 'Image Upload Detection'))
@@ -45,4 +47,26 @@ else:
         For each detected garbage object, you'll learn how to correctly sort it (e.g., recycling, compost, landfill).
 
     """
+    )
+
+st.markdown(
+        """
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Chewy&display=swap'); 
+
+            h2 {
+                font-family: 'Chewy', sans-serif !important;
+                font-size: 45px;
+                font-weight: 500;
+                color: #32CD32;
+                padding-bottom: 20px;
+            }
+
+            .css-1v0mbdj {
+                margin-top:-300px;
+                z-index:-100;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
     )
