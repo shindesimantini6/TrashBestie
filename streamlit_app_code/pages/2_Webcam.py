@@ -23,20 +23,6 @@ st.set_page_config(
     page_icon="🗑️",
 )
 
-st.markdown(
-        """
-        <style>
-            .css-1v0mbdj {
-                margin-top:-300px;
-                z-index:-100;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-st.sidebar.image("trashbestie.png", use_column_width=True)
-
 # Add a confidence level limit
 conf = 0.5  # Minimum accuracy score fixed at 50%
 

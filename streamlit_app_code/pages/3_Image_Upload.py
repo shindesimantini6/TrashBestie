@@ -22,28 +22,6 @@ st.set_page_config(
     page_icon="🗑️",
 )
 
-st.sidebar.image("trashbestie.png", use_column_width=True)
-
-st.markdown(
-        """
-        <style>
-        @import url('https://fonts.googleapis.com/css?family=Chewy&display=swap'); 
-            h1 {
-                font-family: 'Chewy', sans-serif !important;
-                font-size: 45px;
-                font-weight: 500;
-                color: #32CD32;
-            }
-
-            .css-1v0mbdj {
-                margin-top:-300px;
-                z-index:-100;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
 # Add a confidence level limit
 conf = 0.4  # Minimum accuracy score fixed at 50%
 
@@ -103,6 +81,3 @@ if source_img:
                     st.write(f"### Predicted as {name}")
                     st.write(f'### {class_descriptions[keys]["waste_bin"]}')
                     st.write(class_descriptions[keys]["description"])
-else:
-    st.write("# Please upload an image")
-
