@@ -5,7 +5,38 @@ st.set_page_config(
     page_icon="🗑️",
 )
 
-st.write("# Welcome to TrashBestie! 🗑️")
+st.sidebar.image("trashbestie.png", use_column_width=True)
+
+st.markdown(
+        """
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Chewy&display=swap'); 
+            @import url('https://fonts.googleapis.com/css2?family=Gudea&display=swap');
+
+            .css-zt5igj, h2 {
+                font-family: 'Chewy', sans-serif !important;
+                font-size: 45px;
+                font-weight: 500;
+                color: #32CD32;
+                text-align: center;
+                padding-bottom: 20px;
+            }
+            
+            .element-container
+            {
+                font-family: 'Gudea', sans-serif;
+            }
+
+            .css-1v0mbdj {
+                margin-top:-300px;
+                z-index:-100;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+st.write("# Do you ever feel confused about recycling?")
 
 st.markdown(
     """
