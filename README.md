@@ -40,7 +40,7 @@ be diposed in that bin.
 
 ## Demo of the model
 
-![Example for Image Detection](<Screenshot from 2023-08-23 12-03-35_cropped.png>)
+![Screenshot from 2023-08-23 12-03-35_cropped](https://github.com/shindesimantini6/TrashBestie/assets/79316344/d7e6a1ce-9160-4f4b-9f63-d6e1e5d1a3ed)
 
 ## Requirements
 - Python 3.6+
