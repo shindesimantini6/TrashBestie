@@ -23,6 +23,20 @@ st.set_page_config(
     page_icon="🗑️",
 )
 
+st.markdown(
+        """
+        <style>
+            .css-1v0mbdj {
+                margin-top:-300px;
+                z-index:-100;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+st.sidebar.image("trashbestie.png", use_column_width=True)
+
 # Add a confidence level limit
 conf = 0.5  # Minimum accuracy score fixed at 50%
 
@@ -69,7 +83,6 @@ while (vid_cap.isOpened()):
             for name in classes_predicted:
                 print(name)
                 if name == keys:
-                    st.write(f"- **Predicted as {name}**")
-                    st.write(f'**{class_descriptions[keys]["waste_bin"]}**')
+                    st.write(f"### Predicted as {name}")
+                    st.write(f'### {class_descriptions[keys]["waste_bin"]}')
                     st.write(class_descriptions[keys]["description"])
-                    

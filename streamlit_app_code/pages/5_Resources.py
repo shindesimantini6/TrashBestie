@@ -5,6 +5,8 @@ st.set_page_config(
     page_icon="🗑️",
 )
 
+st.sidebar.image("trashbestie.png", use_column_width=True)
+
 st.header("Resources and References")
 
 st.markdown(
@@ -14,6 +16,28 @@ st.markdown(
     3. [Yolov8](https://github.com/ultralytics/ultralytics)
     4. [Roboflow](https://roboflow.com/)
     5. [Streamlit](https://streamlit.io/)
+    
 """
 )
 
+st.markdown(
+        """
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Chewy&display=swap'); 
+
+            h2 {
+                font-family: 'Chewy', sans-serif !important;
+                font-size: 45px;
+                font-weight: 500;
+                color: #32CD32;
+                padding-bottom: 20px;
+            }
+
+            .css-1v0mbdj {
+                margin-top:-300px;
+                z-index:-100;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
