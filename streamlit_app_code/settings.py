@@ -31,4 +31,4 @@ DETECT_LOCATOR = 'detect'
 SEGMENT_LOCATOR = 'segment'
 
 # Webcam
-WEBCAM_PATH = 1
+WEBCAM_PATH = 0
